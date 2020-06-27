@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+          integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="staff.css">
+    <title>Bibliotheek Chat-app</title>
+</head>
+<body>
+<div class="chat-container">
+    <header class="chat-header">
+        <h1><i class="fas fa-book"></i> Bibliotheek Team Klantenservice</h1>
+        <a href="index.html" class="btn">Uitloggen</a>
+    </header>
+    <main class="chat-main">
+        <div class="chat-sidebar">
+            <h3><i class="fas fa-users"></i> Gebruikers</h3>
+            <ul id="users">
+            </ul>
+        </div>
+        <div class="chat-messages"></div>
+        <script id="messages-template" type="text/x-handlebars-template">
+            {{#each messages}}
+                <div class="message">
+                    <p class="meta">{{username}} <span>{{time}}</span></p>
+                    <p class="text">
+                        {{message}}
+                    </p>
+                </div>
+            {{/each}}
+        </script>
+
+    </main>
+    <div class="chat-form-container">
+        <form id="chat-form">
+            <input
+                    id="msg"
+                    type="text"
+                    placeholder="Voer bericht in"
+                    required
+                    disabled
+                    autocomplete="off"
+            />
+            <button class="btn"><i class="fas fa-paper-plane"></i> Sturen</button>
+        </form>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuidv4.min.js"
+        integrity="sha256-lvY1UGPieixwVI36EVd7p3kIvYZSkWRqh2wLZk24GPc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js"
+        integrity="sha256-ijqLssetA1NMNjZ+w1zaUafQQLm4IW5OoM8O+4tatME=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
+        integrity="sha256-usTqAE1ywvdMtksWzdeWzD75MsfJN0h0U7y2NtZL3N0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js" integrity="sha256-5oApc/wMda1ntIEK4qoWJ4YItnV4fBHMwywunj8gPqc=" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="staff.js"></script>
+</body>
+</html>
