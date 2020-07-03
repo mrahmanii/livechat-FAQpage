@@ -6,32 +6,32 @@ username = uuidv4();
 console.log(username, name);
 
 const socket = io();
-// Join chatroom
+// Word lid van de chatroom
 socket.emit('userJoined', {
     username
 });
 
-//Message from server
+//Bericht van server
 socket.on('message', message => {
     console.log(`Received message from server ${JSON.stringify(message)}`);
     outputMessage(message);
     welcomeMessageReceived = true;
-    //scroll down
+    //Naar beneden scrollen
     chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-//message submit
+//Bericht verzenden
 chatForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    //Get message text
+    //Ontvang berichttekst
     const msg = event.target.elements.msg.value;
 
-    //Emit message to server
+    //Stuur bericht naar server
     socket.emit('chatMessage', msg);
     console.log(`Sent a chat message to the server: ${msg}`);
 
-    //cle ar input
+    //Duidelijke invoer
     event.target.elements.msg.value = '';
     event.target.elements.msg.focus();
 });

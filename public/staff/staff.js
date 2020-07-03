@@ -6,7 +6,7 @@ let usersMap = new Map();
 
 let currentUser = null;
 
-//Get username and room from URL
+//Haal gebruiksnaam en ruimte op van URL
 const {username, room} = Qs.parse(location.search, {
     ignoreQueryPrefix: true
 });
@@ -15,7 +15,7 @@ userid = uuidv4();
 console.log(username, name, userid);
 
 const socket = io();
-// Join chatroom
+// Word lid van de chatroom
 socket.emit('staffJoined', {
     username
 });
@@ -28,12 +28,12 @@ socket.on('userJoined', function ({user, time}) {
 })
 
 
-//Get all users
+//Krijg alle gebruikers
 socket.on('roomusers', (users) => {
     outputUsers(users);
 });
 
-//Message from server
+//Bericht van server
 socket.on('message', message => {
     console.log(`Received message from server ${JSON.stringify(message)}`);
     usersMap.get(message.id).messages.push({username: message.username, time: message.time, message: message.text});
@@ -42,18 +42,18 @@ socket.on('message', message => {
     //outputMessage(message);
     renderMessages();
 
-    //scroll down
+    //Naar beneden scrollen
     chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-//message submit
+//Bericht verzenden
 chatForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    //Get message text
+    //Ontvang berichttekst
     const msg = event.target.elements.msg.value;
 
-    //Emit message to server
+    //Stur bericht naar server
     if(currentUser) {
         let data = {id: currentUser.id, staffUserId: userid, username: username, message: msg};
         console.log(`Sending data ${JSON.stringify(data)} to server`);
@@ -68,7 +68,7 @@ chatForm.addEventListener('submit', (event) => {
     }
 });
 
-//Add users to DOM
+//Voeg gebruikers toe aan DOM
 function outputUsers({users}) {
     userList.innerHTML = `${users.map(user => `<li><a href="#" onclick="showMessage('${user.id}')">${user.username}</a></li>`).join('')}`;
 
@@ -88,7 +88,7 @@ function renderMessages() {
     document.querySelector('.chat-messages').innerHTML = compiled_template(currentUser);
 }
 
-//show messages for the chat
+//Toon berichten voor de chat
 function showMessage(id) {
     console.log(`Show messages for ${id}`);
     currentUser = usersMap.get(id);

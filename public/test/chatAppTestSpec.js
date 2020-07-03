@@ -1,21 +1,21 @@
 describe("Chatbox open", function () {
-    it("Toggle chatbox once", function () {
+    it("Chatbox eenmaal wisselen", function () {
         let currentState = isChatboxOpen();
         expect(isChatboxOpen()).toBe(currentState);
         toggleChatBox();
         expect(isChatboxOpen()).toBe(!currentState);
     });
 
-    it("Toggle chatbox twice", function () {
+    it("Schakel chatbox tweemaal in", function () {
         let currentState = isChatboxOpen();
         expect(isChatboxOpen()).toBe(currentState);
         toggleChatBox();
         expect(isChatboxOpen()).toBe(!currentState);
         toggleChatBox();
-        expect(isChatboxOpen()).toBe(currentState);
+        expect(isChatboxOpen()).toBe(currentState); 
     });
 
-    it("Toggle chatbox thrice", function () {
+    it("Schakel chatbox driemaal in", function () {
         let currentState = isChatboxOpen();
         expect(isChatboxOpen()).toBe(currentState);
         toggleChatBox();
@@ -27,7 +27,7 @@ describe("Chatbox open", function () {
     });
 });
 
-describe("Submit form", function () {
+describe("Formulier verzenden", function () {
     const message1 = {
         "id": "6GSWTYz5LTMRi-DxAAAF",
         "username": "448ed50c-4b7c-48c9-92f3-020d5c95acee",
@@ -39,13 +39,13 @@ describe("Submit form", function () {
         "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, natus."
     };
 
-    it("Check if the server welcome message has come", function () {
+    it("Controleer of het welkomstbericht van de server is gekomen", function () {
         const msg = document.getElementById("msg")
         let messages = chatMessages.querySelectorAll('.message');
         expect(messages.length >= 0).toBe(true);
     });
 
-    it("Add a message and check if a message is added to the chatbox", function () {
+    it("Voeg een bericht toe en controleer of er een bericht is toegevoegd aan de chatbox", function () {
         const msg = document.getElementById("msg")
         msg.value = "Test Text";
         clearMessages();
@@ -54,7 +54,7 @@ describe("Submit form", function () {
         expect(messages.length >= 1).toBe(true);
     });
 
-    it("Add two messages and check if two message is added to the chatbox", function () {
+    it("Voeg twee berichten toe en controleer of er twee berichten zijn toegevoegd aan de chatbox", function () {
         const msg = document.getElementById("msg")
         msg.value = "Test Text";
         clearMessages();
